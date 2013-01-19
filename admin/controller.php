@@ -10,19 +10,19 @@ jimport('joomla.application.component.controller');
  */
 class FormulizeController extends JController
 {
-        /**
-         * display task
-         *
-         * @return void
-         */
-        function display($cachable = false) 
-        {
-                // set default view if not set
-                $input = JFactory::getApplication()->input;
-                $input->set('view', $input->getCmd('view', 'Formulize'));
- 
-                // call parent behavior
-                parent::display($cachable);
-        }
+    /**
+     * display task
+     *
+     * @return void
+     */
+    function display($cachable = false) 
+    {
+        // set default view if not set
+        $input = JFactory::getApplication()->input;
+        $input->set('view', $input->getCmd('view', 'Formulize'));
+
+        // call parent behavior
+        parent::display($cachable);
+    }
 }
 ?>
