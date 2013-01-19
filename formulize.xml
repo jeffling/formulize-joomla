@@ -39,8 +39,6 @@
 			<filename>index.html</filename>
 			<filename>formulize.php</filename>
 			<filename>controller.php</filename>
-			<folder>views</folder>
-			<folder>models</folder>
 		</files>
 	</administration>
 
