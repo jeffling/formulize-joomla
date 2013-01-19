@@ -22,9 +22,6 @@
 	<files folder="site">
 		<filename>index.html</filename>
 		<filename>formulize.php</filename>
-		<filename>controller.php</filename>
-		<folder>models</folder>
-		<folder>views</folder>
 	</files>
 
 	<administration>
