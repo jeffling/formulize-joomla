@@ -1,13 +1,19 @@
 K 25
 svn:wc:ra_dav:version-url
 V 48
-/svnroot/formulize/!svn/ver/804/joomla/2.5/admin
+/svnroot/formulize/!svn/ver/807/joomla/2.5/admin
 END
 formulize.php
 K 25
 svn:wc:ra_dav:version-url
 V 62
 /svnroot/formulize/!svn/ver/804/joomla/2.5/admin/formulize.php
+END
+controller.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/formulize/!svn/ver/807/joomla/2.5/admin/controller.php
 END
 index.html
 K 25
