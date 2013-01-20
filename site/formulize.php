@@ -1,12 +1,18 @@
 <?php
-  // No direct access to this file
-  defined('_JEXEC') or die('Restricted access');
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
 
-  print "<h1>Formulize</h1>";
+// import joomla controller library
+jimport('joomla.application.component.controller');
 
-  $params = JComponentHelper::getParams( 'com_formulize' );
-  $formulize_path = $params->get('formulize_path');
-  include_once $formulize_path."/mainfile.php";
-  $formulize_screen_id = 2;
-  include $formulize_path."/modules/formulize/index.php";
+// Get an instance of the controller prefixed by Formulize
+$controller = JController::getInstance('Formulize');
+
+// Perform the Request task
+$input = JFactory::getApplication()->input;
+$controller->execute($input->getCmd('task'));
+
+// Redirect if set by the controller
+$controller->redirect();
+
 ?>

@@ -2,11 +2,14 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
  
-JToolBarHelper::title(JText::_('Formulize-Joomla'), 'formulize');
-JToolBarHelper::preferences('com_formulize');
-
-$document = JFactory::getDocument();
-$document->setTitle(JText::_('COM_FORMULIZE_ADMINISTRATION'));
-
-$params = JComponentHelper::getParams( 'com_formulize' );
-print "formulize path: ".$params->get('formulize_path');
+ //import joomla controller library
+ jimport('joomla.application.component.controller');
+ 
+// Get an instance of the controller prefixed by Formulize
+$controller = JController::getInstance('Formulize');
+ 
+// Perform the Request task
+$controller->execute(JRequest::getCmd('task'));
+ 
+// Redirect if set by the controller
+$controller->redirect();
