@@ -8,4 +8,5 @@ JToolBarHelper::preferences('com_formulize');
 $document = JFactory::getDocument();
 $document->setTitle(JText::_('COM_FORMULIZE_ADMINISTRATION'));
 
-print 'test';
+$params = JComponentHelper::getParams( 'com_formulize' );
+print "formulize path: ".$params->get('formulize_path');

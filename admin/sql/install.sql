@@ -1,6 +1,0 @@
-DROP TABLE IF EXISTS `#__formulize`;
- 
-CREATE TABLE `#__formulize` (
-  `params` TEXT NOT NULL DEFAULT '',
-   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
