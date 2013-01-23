@@ -21,7 +21,7 @@
 	<form>
 		<fields name="params">
 			<fieldset label="Parameters" name="params">
-				<field default="/etc/www/formulize" description="Path to Formulize" label="Path" name="formulize_path" type="text">
+				<field default="C:/wamp/www/websites/Formulize2" description="Path to Formulize" label="Path" name="formulize_path" type="text">
 				</field>
 			</fieldset>
 		</fields>
@@ -32,10 +32,7 @@
 		<filename>index.html</filename>
 		<filename>formulize.php</filename>
 		<filename>index.html</filename>
-		<filename>formulize.php</filename>
-		<filename>controller.php</filename>
 		<folder>views</folder>
-		<folder>models</folder>
 	</files>
 
 	<!-- Administration Menu Section -->
@@ -49,11 +46,8 @@
 			<!-- Admin Main File Copy Section -->
 			<filename>index.html</filename>
 			<filename>formulize.php</filename>
-			<filename>controller.php</filename>
 			<filename>config.xml</filename>
 			<folder>models</folder>
-			<folder>tables</folder>
-			<folder>views</folder>
 		</files>
 	</administration>
 </extension>
