@@ -9,12 +9,11 @@
 	// For debugging
 	//echo '<script type="text/javascript">alert("' . $formId . '"); </script>';
 	
+	// Get the path to Formulize stored as a component parameters
 	$params = JComponentHelper::getParams( 'com_formulize' );
 	$formulize_path = $params->get('formulize_path');
 	
-	// Include the selected form
+	//Include the selected form
 	include_once $formulize_path."/mainfile.php";
-	//TODO: get screen list dynamically and allow parameter setting
-	$formulize_screen_id = 10; 
-	//$formulize_screen_id = 2;
+	$formulize_screen_id = $formId; 
 	include $formulize_path."/modules/formulize/index.php";
