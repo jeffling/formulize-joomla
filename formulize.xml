@@ -47,7 +47,7 @@
 			<filename>index.html</filename>
 			<filename>formulize.php</filename>
 			<filename>config.xml</filename>
-			<folder>models</folder>
+			<folder>fields</folder>
 		</files>
 	</administration>
 </extension>

@@ -3,7 +3,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Script file of HelloWorld component
+ * Script file of Formulize component
  */
 class com_formulizeInstallerScript {
     /**
