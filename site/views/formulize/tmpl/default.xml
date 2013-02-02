@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="Formulize">
-			<message>
-					<![CDATA[Formulize]]>
-			</message>
-	</layout>
-		
 	<fields name="request" 
 			addfieldpath="/administrator/components/com_formulize/fields">
 		<fieldset name="request">

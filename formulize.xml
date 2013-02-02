@@ -15,7 +15,7 @@
 	<description>Integration of Formulize into Joomla</description>
 
 	<!-- Run script -->
-	<scriptfile>script.php</scriptfile>>
+	<scriptfile>script.php</scriptfile>
 
 	<!-- Parameters -->
 	<form>

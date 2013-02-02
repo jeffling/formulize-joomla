@@ -10,4 +10,5 @@
 	$document->setTitle(JText::_('COM_FORMULIZE_ADMINISTRATION'));
 
 	$params = JComponentHelper::getParams( 'com_formulize' );
-	print "formulize path: ".$params->get('formulize_path');
+	print "Formulize path: ".$params->get('formulize_path');
+	

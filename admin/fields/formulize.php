@@ -10,6 +10,8 @@ $params = JComponentHelper::getParams( 'com_formulize' );
 $formulize_path = $params->get('formulize_path');
 require_once $formulize_path."/integration_api.php";
 
+print"Choose a Formulize screen:";
+
 /**
  * Formulize Form Field class
  */
