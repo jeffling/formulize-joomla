@@ -14,6 +14,10 @@
 	// For debugging
 	//echo '<script type="text/javascript">alert("' . $formId . '"); </script>';
 	
+	// Add style
+	$document =& JFactory::getDocument();
+	$document->addStyleSheet(JURI::base() . 'components/com_formulize/formulize.css');
+
 	//Include the selected form
 	include_once $formulize_path."/mainfile.php";
 	$formulize_screen_id = $formId; 

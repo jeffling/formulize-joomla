@@ -1,0 +1,117 @@
+
+/* Formulize css */
+
+#formulizeform #floating-list-of-entries-save-button {
+	padding: 1em 1.5em;
+	margin: 1em 0;
+	background-color: #FFF;
+}
+
+#formulizeform #floating-list-of-entries-save-button.save_button_fixed {
+	position: fixed; 
+	bottom: 0;
+	z-index: 100;
+	margin-top: 0;
+	margin-bottom: 0;
+	border: solid 1px #1D65A5;
+}
+
+#formulizeform table td {
+	padding: 0;
+	border-width: 0;
+	vertical-align: top;
+}
+
+#formulizeform th {
+	font-size: large;
+}
+
+#formulizeform .outer {
+	color: #1B75BB;
+}
+#formulizeform .head {
+	color:#74B64A;
+	padding: 5px;
+	font-weight: bold;
+	border-top: 3px solid #CCCCCC;
+}
+#formulizeform .even {
+	color:black;
+	padding: 5px;
+	border-top: 3px solid #CCCCCC;
+}
+#formulizeform .odd {
+	color:black;
+	padding: 5px;
+	border-top: 3px solid #CCCCCC;
+	background-color: white;
+}
+#formulizeform tr.even td {
+	color:black;
+	padding: 5px;
+	border-top: 3px solid #CCCCCC;
+}
+#formulizeform tr.odd td {
+	color:black;
+	padding: 5px;
+	border-top: 3px solid #CCCCCC;
+	background-color: white;	
+}
+#formulizeform .xoops-form-element-caption .caption-marker {
+	display: none;
+}
+#formulizeform .xoops-form-element-help {
+	font-weight: normal;
+}
+
+#formulizeform tbody {
+  border-top: 0 solid white;
+}
+
+#formulizeform #currentview {
+    width: 450px;
+    font-size: 1.2em;
+}
+
+#formulizeform .floating-column {
+    position: fixed;
+    border: 1px solid white;
+    display: none;
+    padding: 0px !important;
+}
+#formulizeform .floating-column .main-cell-div {
+    float: left;
+    border: 1px solid white;
+    padding: 5px;
+    
+}
+
+
+/*=== Formulize Boutons by Francois T ===*/
+#formulizeform button, #formulizeform input[type='submit'], #formulizeform input[type='button'], #formulizeform input[type='reset'] {
+	background-color: 			#F4F9FE;
+	-webkit-border-radius: 5px;
+	color: 						#2F85DC;
+	border:						1px solid;
+	border-color: 				#ccc;
+}
+#formulizeform input:hover, #formulizeform button:hover, #formulizeform .xo-formbuttons:hover, #formulizeform .formButton:hover {
+    transform: scale(1.2);  
+    box-shadow: 0 0 65px #F4F9FE inset, 0 0 20px #F4F9FE inset, 0 0 15px #333;  
+}
+#formulizeform button:focus, #formulizeform input[type='submit']:focus, #formulizeform input[type='button']:focus, #formulizeform input[type='reset']:focus, #formulizeform .xo-formbuttons:focus, #formulizeform .formButton:focus {
+	background-color:			#f4f4f4;
+	border-color :				#333;
+}
+
+/*=== Need to add custom images, but we don't know the relative URL which will be diff. per installation, and not sure if we can solve this with PHP like we can in XOOPS/ICMS ===*/
+#formulizeform .formulize_button {
+    background: #2F85DC;
+    border-color: #0076a3;
+    color: #fff !important;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.4);    
+    font-size: 15px;
+    font-weight: bold;
+    height: 36px;
+    width: 173px !important;
+}
