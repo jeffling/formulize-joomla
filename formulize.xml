@@ -34,6 +34,7 @@
 		<filename>index.html</filename>
 		<filename>formulize.css</filename>
 		<folder>views</folder>
+		<folder>images</folder>
 	</files>
 
 	<!-- Administration Menu Section -->

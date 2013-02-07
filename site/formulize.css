@@ -1,7 +1,147 @@
 
 /* Formulize css */
 
-#formulizeform #floating-list-of-entries-save-button {
+#listofentries h1, b {
+	color: black;
+}
+
+#listofentries a {
+	color: #666666;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.formulize_button {
+	color: white;
+	height: 27px;
+	width: 150px;
+	font-size: 12px;
+}
+
+#formulize_addButton {
+	padding: 0 1.8em;
+	background: url(images/contact-new.png) no-repeat left center;
+	background-color: #2F85DC;
+}
+
+#formulize_addMultiButton {
+	padding: 0 1.5em;
+	background: url(images/multi.png) no-repeat left center;
+	background-color: #2F85DC;
+}
+
+#formulize_changeColsButton {
+	padding: 0 1.5em;
+	background: url(images/table.png) no-repeat left center;
+	background-color: #3399FF;
+}
+
+#formulize_resetViewButton {
+	padding: 0 1.5em;
+	background: url(images/find.png) no-repeat left center;
+	background-color: #3399FF;
+}
+
+#formulize_saveViewButton {
+	padding: 0 1.5em;
+	background: url(images/findsave.png) no-repeat left center;
+	background-color: #3399FF;
+}
+
+#formulize_deleteViewButton {
+	padding: 0 1.5em;
+	background: url(images/finddel.png) no-repeat left center;
+	background-color: #3399FF;
+}
+
+#formulize_selectAllButton {
+	padding: 0 1.5em;
+	background: url(images/select.png) no-repeat left center;
+	background-color: #3CA683;
+}
+
+#formulize_clearSelectButton {
+	padding: 0 1.5em;
+	background: url(images/unselect.png) no-repeat left center;
+	background-color: #3CA683;
+}
+
+#formulize_cloneButton {
+	padding: 0 1.5em;
+	background: url(images/clone.png) no-repeat left center;
+	background-color: #3CA683;
+}
+
+#formulize_deleteButton {
+	padding: 0 1.5em;
+	background: url(images/delete.png) no-repeat left center;
+	background-color: #3CA683;
+}
+
+#formulize_calcButton {
+	padding: 0 1.5em;
+	background: url(images/calculator.png) no-repeat left center;
+	background-color: #A7A7A7;
+}
+
+#formulize_advCalcButton {
+	padding: 0 1.5em;
+	background: url(images/calculator.png) no-repeat left center;
+	background-color: #A7A7A7;
+}
+
+#formulize_exportButton {
+	padding: 0 1.5em;
+	background: url(images/math.png) no-repeat left center;
+	background-color: #2F85DC;
+}
+
+#formulize_importButton {
+	padding: 0 1.5em;
+	background: url(images/import.png) no-repeat left center;
+	background-color: #2F85DC;
+}
+
+#formulize_notifButton {
+	padding: 0 1.5em;
+	background: url(images/notif.png) no-repeat left center;
+	background-color: #5450A5;
+}
+
+#resbox {
+	background-color: #FFFFFF;
+}
+
+.head {
+	background-color: #8FBE58;
+}
+
+.head center {
+	width: 150px;
+}
+
+.odd.column {
+	background-color: #80C3DD;
+	width: 100%;
+}
+
+.even {
+	background-color: #A4E2F7;
+}
+
+
+
+
+
+
+
+/***************************************/
+
+
+
+
+
+#formulizeform floating-list-of-entries-save-button {
 	padding: 1em 1.5em;
 	margin: 1em 0;
 	background-color: #FFF;
@@ -34,6 +174,7 @@
 	padding: 5px;
 	font-weight: bold;
 	border-top: 3px solid #CCCCCC;
+	background: url(images/redselect.png) no-repeat center center;
 }
 #formulizeform .even {
 	color:black;
@@ -44,7 +185,7 @@
 	color:black;
 	padding: 5px;
 	border-top: 3px solid #CCCCCC;
-	background-color: white;
+	background-color: white
 }
 #formulizeform tr.even td {
 	color:black;
