@@ -26,14 +26,14 @@
 			</fieldset>
 		</fields>
 	</form>
+
 	
 	<!-- Site Main File Copy Section -->
 	<files folder="site">
 		<filename>index.html</filename>
 		<filename>formulize.php</filename>
-		<filename>index.html</filename>
 		<filename>formulize.css</filename>
-		<folder>views</folder>
+		<filename>metadata.xml</filename>
 		<folder>images</folder>
 	</files>
 
