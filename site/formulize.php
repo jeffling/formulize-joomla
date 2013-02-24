@@ -29,8 +29,6 @@
 
 	
 	
-	
-	
 
 	// Get the path to Formulize stored as a component parameters
 	$params = JComponentHelper::getParams( 'com_formulize' );
@@ -60,8 +58,8 @@
 	// Will overwrite formulize.css
 	//$document->addStyleDeclaration( $style1);
 	//$document->addStyleDeclaration( $style2);
-	echo '<div id="formulize-screen">';
 	//Include the selected form
+	echo '<div id="formulize-screen">';
 	include_once $formulize_path."/mainfile.php";
 	$formulize_screen_id = $formId; 
 	include $formulize_path."/modules/formulize/index.php";
