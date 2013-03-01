@@ -8,7 +8,7 @@
 	<fields name="request" 
 			addfieldpath="/administrator/components/com_formulize/fields">
 		<fieldset name="request">
-			<field name="id" type="formulize" label="Formulize" />
+			<field name="id" type="formulize" label="Formulize Screens:" />
 		</fieldset>
     </fields>
 </metadata>
