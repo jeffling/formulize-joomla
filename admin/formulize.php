@@ -3,13 +3,15 @@
 	defined('_JEXEC') or die('Restricted access');
  
 	// Set the administration interface
-	// Set the toolbar
- 	JToolBarHelper::title(JText::_('Formulize-Joomla'), 'formulize');
-	JToolBarHelper::preferences('com_formulize');
-	// Set the title
+	// Set the Toolbar
+ 	JToolBarHelper::title(JText::_('COM_FORMULIZE_ADMINISTRATION'), 'formulize');
+	JToolBarHelper::preferences('com_formulize', '300', '700', 'Configure', ' ');
+	
+	// Add an image to the backend
 	$document = JFactory::getDocument();
-	$document->setTitle(JText::_('Formulize administration'));
+	$document->addStyleDeclaration('.icon-48-formulize {background-image: url(../media/com_formulize/images/logo-48x48.png);}');
+	
 	// Set the main body
 	$params = JComponentHelper::getParams( 'com_formulize' );
-	print "Formulize path: ".$params->get('formulize_path');
+	print "Path to Formulize: ".$params->get('formulize_path');
 	
