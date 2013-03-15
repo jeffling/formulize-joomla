@@ -38,12 +38,9 @@
 	$document = JFactory::getDocument();
 	$document->addStyleSheet(JURI::base() . 'components/com_formulize/formulize.css');
 	
-	// Inject the selected form into the screen wrapped into a formulize-screen id
-	echo '<div id="formulize-screen">';
+	// Inject the selected form into the screen
 	include_once $formulize_path."/mainfile.php";
-	$formulize_screen_id = $formId; 
-	include $formulize_path."/modules/formulize/index.php";
-	echo '</div>';
+	Formulize::renderScreen($formId);
 	
 	/*****************************************************
 	 * Note that what follows might be used to customize  
