@@ -1,0 +1,139 @@
+============================================================================
+***Formulize Integration Extension - Integration of Formulize into Joomla*** 
+***User Guide***************************************************************
+*** Add both logos and ask Julian for other logo... put a logo on each page?
+============================================================================
+
+Table of Content
+
+1. Description of the Extension....................................page 1
+2. Installation Instructions.......................................page ?
+3. Initial Configuration...........................................page ?
+4. Embeding a Formulize form in a webpage..........................page ?
+5. Restricting the access to a Formulize form into Joomla..........page ?
+6. Customization of the appearance of a Formulize form.............page ?
+7. Notes on User Management........................................page ?
+8. Troubleshoothing................................................page ?
+
+======================================================
+1. Description of the Formulize Integration Extension         (Would also be the short description to post on the JED -- Notes in red)
+======================================================
+
+The aim of the Formulize Integration Extension is the integration of Formulize into Joomla. Formulize is a web application for data management that allows webmasters to quickly create forms and reports on the web. With both Formulize and Joomla installed on the same server, a webmaster can create forms in Formulize and embed those forms into a Joomla website using a simple interface. In order to display a particular Formulize form on the Joomla website, a webmaster create a new page by choosing a new menu item of type Formulize and, from the menu item's setting, simply select the desired form from a drop down list of all available Formulize forms. 
+
+Another powerful feature of the Formulize Integration Extension is the user management synchronization between the two systems. It is possible to have Formulize replicate the entire set of users, user groups and their associated permissions that is present in Joomla. This synchronization is done by first performing an initial sync by transfering all user data and user group data from Joomla to Formulize. After this operation, every action that is performed on users and on user groups in Joomla is automatically performed in Formulize, keeping the two systems in sync at all time. That way, users can interact with the forms the same way as they would do through Formulize and can have access to all the tools available in Formulize it self. The administration of the forms only is performed from within the Formulize system, by the webmaster. 
+
+Note that this synchronization is one way only. This means that all actions performed on users and user groups in Formulize will not be replicated in Joomla. The implication of this is that the Formulize system can be used for other activities, those activities being totally independent of Joomla. That way, the management of forms involving other users and user groups can still be conducted in Formulize without interfering with the two system's synchronization. Also, note that this synchronization is optional. It is possible for a webmaster to embed forms without any permission of any kind associated to them, and having the two systems running completely independently on your server. 
+
+The Formulize Integration Extension is made of two parts, a component and a plugin. Those two parts will be installed in one step by uploading and installing one single installation package. 
+
+=============================
+2. Installation Instructions        (Section 2 and Section 3 would also be in the separate document "Installation Instruction", by themself)
+=============================
+
+Prior to installing the Formulize Integration Extension, you need to have Joomla (version 2.5) and Formulize (Standalone version ? or higher, available at ?) running on the same server. (Make note about cloud server... Ask Julian...)
+
+The Formulize Integration Extension is made of two parts, a component and a plugin. Those two parts will be installed in one step by uploading and installing the zipped file pkg_formulize.zip. This zipped file include plg_formulize.zip and com_formulize.zip. Both of those zipped files will be installed automatically, one after the other.
+
+*Installation Steps:
+ 
+1. Make sure you have Joomla 2.5 and Formulize Standalone version ? or higher running on the same server.
+2. Download the extension at ?.
+3. Go to the Extension Manager. 
+4. Using Upload Package File, browse your computer for the file pkg_formulize.zip and hit Upload & Install.
+5. Go to the Plug-in Manager.
+6. Using the Filter, search for Formulize Plug-in and unable the Plug-in.
+7. Make sure there's a green check mark beside Formulize Plug-in in the column Status. 
+
+* Important Note: 
+
+If you don't want the user management synchronization between the two systems, you can skip steps 5 to 7. Skipping those steps will prevent Joomla and Formulize to perform useless operation in the background by letting the Plug-in disable.
+
+=========================
+3. Initial Configuration
+=========================
+
+After installing the extension on a server where Joomla and Formulize are running side by side, the Formulize Integration Extension need to be configured. 
+
+*Configuration Steps:
+
+1. If you want to synchronize the user management between the two systems, make sure the Formulize Plug-in is enabled. 
+2. From the Component Menu, choose Formulize.
+2. In the component backend administration, hit the button Configure on the upper right.
+3. In the text field of the Parameters tab, enter the path to your Formulize standalone installation.
+4. If you want to synchronize the user management between the two systems, hit the button Synchronize.
+
+==========================================
+4. Embeding a Formulize form in a webpage
+==========================================
+
+Before being able to embed a Formulize form into Joomla, the form itself needs to have been created beforehand from the Formulize administration interface and its associated permissions set properly.
+
+*Steps to embed a Formulize form in a webpage:
+
+1. Go to the Menu Manager: Menu Items and create a new menu item.
+2. Select the new menu item type Formulize.
+3. Enter a title for the new webpage.
+4. In the required setting, select the desired form from the drop down list of all Formulize forms that are accessible to the current administrator. 
+
+==========================================================
+5. Restricting the access to a Formulize Form into Joomla  
+==========================================================
+
+There is two options for restricting the access to a Formulize Form into Joomla. One option is to . The othe option is to let Formulize handle those permissions. 
+
+The first option is to put Joomla responsible for respecting all permission associated to all the Formulize forms that are displayed on the website. If this option is chosen, the webmaster uses the standard Joomla Access Control List (ACL) to handle all the restrictions. That way, a user having no access to a particular form would not even see the menu associated to the form and would never be able to visit the page where the form is displayed.
+
+The second option is to let Formulize handle all the restrictions. If this option is chosen, the webmaster don't have to set any Viewing Access Level. That way, a user having no access to a particular form would not be able to see the form itself and would get the message "You do not have permission to see that form" when visiting the still accessible page.
+
+=======================================================
+6. Customization of the appearance of a Formulize form
+=======================================================
+
+It is possible for the webmaster to customize the appearance of a Formulize form by modifying its basic colors through an extremely simple interface. For each Formulize menu item, a parameter can be adjusted in the advanced setting section. This parameter consist of one single color field where three (and exactly three) colors in hex format can be entered, separated by commas. If that field contains valid values, the component bases the appearance of the form on those three colors. If nothing or an invalid value has been entered, this parameter is ignored. 
+
+(Will appear only if I have time to add the menu item parameter... It would be awesome... Notes in red)
+
+Another possibility would be for an experienced webmaster to modify directly the component css located in your_path/components/com_formulize/formulize.css.
+
+============================================
+7. Notes on User Management Synchronization
+============================================
+
+*****************Still need to work on that big time!*********************
+
+Users and Groups created in Joomla will be automatically created in Formulize. the reciprocal is not true...
+
+user with same user name... If you want to have perfect correspondence, you might want to add info manually. Note that this probably not necessary.
+
+User password not needed. user created through Joomla will have access to Formulize only through Joomla.
+
+***Important: Will have two webmasters, one for each system with different credential but both belongs to the same group?
+
+Set user to active manually?
+
+Group with same names + Group inheritance....
+
+Note that some specific permission are define in each system and a perfect mapping is not possible since the prmission has different meaning in each system. The names  
+
+batch processing....
+
+Change parent of a group
+
+If that option is selected, the two systems should be in perfect synchronization.  If, for any weird circomstances, there are discreptancies between both system, can't create group and user directly in Formulize. The easiest way would be to On the other hand, you can adjust the membership manually if necessary....
+
+2 webmasters, one for each system.
+
+Note that if you want to allow an other user with no all power only the form he has access to...mini-admin
+
+===========================
+8. Troubleshoothing / FAQ
+===========================
+
+1. Everything works but no user management action are replicated in Formulize. 
+
+You probably need to enable the Plug-in.
+
+2. 
+
+(There will probably be more to add to this section when testing will be performed by others... Notes in red)
