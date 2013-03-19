@@ -1,92 +1,109 @@
-/* Formulize css */
+/*************
+Formulize css
+**************/
 
-/* I am totally not done here!!!!!!!!!!!!!!*/
-/*
-For testing!
-#formulize_form {
-	background: #ffffff !important;
-	background-color: #ffffff !important;
-	background-image: none !important;
-	position: absolute !important;
-	color: #ffffff !important;
-}
-*/
+/******************************************************
+General Notes:
+The form of type "Entries" has an id of 'listofentries'
+The form of type "Regular" has an id of 'formulizeform'
+*******************************************************/
 
-#formulize_form * {
-	/*background-color: transparent;*/
-}
+/**********************************
+Style the upper part of both forms
+***********************************/
 
-
-#formulize_form table tr, #formulize_form table, #formulize_form table h1 {
-	border: none !important;
-	background: #ffffff !important;
-	background-image: none !important; 
-}
-
-#formulize_form tbody tr td {
-	/*background-color: transparent;*/
-}
-
-#formulize_form .head {
-	background-color: #8FBE58;
-	padding: 5px;
+/* Set the fonts and make sure the background stays white */
+#formulize_form #listofentries #fillInTable h1{
+	color: black;
 	font-weight: bold;
-	border-top: 3px solid #CCCCCC;
+	font-size: 1.8em;
+	border: none;
+} 
+#formulize_form #listofentries #fillInTable {
+	background-color: white;
+	border-color: white;
 }
-#formulize_form .head center {
-	width: 150px;
+#formulize_form #listofentries #actionsTable, #formulize_form #listofentries #temp1, #formulize_form #listofentries #temp2, #formulize_form #listofentries #currentViewSelectTable {
+	color: black;
+	font-weight: bold;
+	font-size: 1.1em;
+	background-color: white;
+	border-color: white;
 }
-#formulize_form .even {
-	background-color: #A4E2F7;
-	color:black;
-	padding: 5px;
-	border-top: 3px solid #cccccc;
+#formulize_form #listofentries #currentViewSelectTable #currentview{
+	color: black;
+	font-size: 0.8em;
+} 
+#formulize_form #formulizeform th {
+	font-size: 1.8em;
+	color: black;
+	font-weight: bold;
 }
-#formulize_form #formulizeform .even {
-	background-color: #80C3DD;
-	color:black;
-	padding: 5px;
-	border-top: 3px solid #cccccc;
+
+/**********************************
+Style the lower part of both forms
+***********************************/
+
+/* Make sure the forms fill the available space */
+#resbox, #formulizeform {
+	min-width: 900px;
 }
-#formulize_form .odd.column {
-	background-color: #80C3DD;
-	width: 100%;
+#resbox table{
+	width:100%;
 }
-#formulize_form .odd {
-	color:black;
-	padding: 5px;
-	border-top: 3px solid #CCCCCC;
-	background-color: white
-}
-#formulize_form tr.even td {
-	color:black;
-	padding: 5px;
-	border-top: 3px solid #CCCCCC;
-}
-#formulize_form tr.odd td {
-	color:black;
-	padding: 5px;
-	border-top: 3px solid #CCCCCC;
-	background-color: white;	
-}
-#formulize_form table td {
-	padding: 0;
-	border-width: 0;
+/* Make sure the forms as a white grid */
+#formulize_form table tbody td {
+	border: 2px solid white;
 	vertical-align: top;
 }
-#formulize_form th {
-	font-size: large;
+#formulize_form table.outer tbody tr td.even table tbody tr td, #formulize_form table tr {
+	border: none;
 }
-#formulize_form #listofentries h1, b, tr {
-	color: black;
-}
+/* Set the fonts and the table cells color */
 #formulize_form  #listofentries a {
 	color: #666666;
 	font-weight: bold;
 	font-size: 14px;
 }
-.xoops-form-element-caption {
-	color: #6d6666;
+#formulize_form  #listofentries a:link {
+	text-decoration: none;
+}
+#formulize_form .head {
+	background-color: #8FBE58;
+	padding: 5px;
+	font-weight: bold;
+}
+#formulize_form .even {
+	background-color: #A4E2F7;
+	color:black;
+	padding: 5px;
+}
+#formulize_form #formulizeform .even {
+	background-color: #80C3DD;
+	color:black;
+	padding: 5px;
+}
+#formulize_form .odd.column, .outer .even td{
+	background-color: #80C3DD;
+}
+#formulize_form .odd {
+	color:black;
+	padding: 5px;
+	background-color: white;
+}
+#formulize_form tr.even td {
+	color:black;
+	padding: 5px;
+}
+#formulize_form tr.odd td {
+	color:black;
+	padding: 5px;
+	background-color: white;	
+}
+#formulize_form .xoops-form-element-caption {
+	color: black;
+	font-weight: bold;
+	font-size: 1.2em;
 }
 #formulize_form .xoops-form-element-caption .caption-marker {
 	display: none;
@@ -94,13 +111,7 @@ For testing!
 #formulize_form .xoops-form-element-help {
 	font-weight: normal;
 }
-#formulize_form tbody {
-  border-top: 0 solid white;
-}
-#formulize_form #currentview {
-    width: 450px;
-    font-size: 1.2em;
-}
+/* Make sure the column are displayed correctly */
 #formulize_form .floating-column {
     position: fixed;
     border: 1px solid white;
@@ -114,12 +125,14 @@ For testing!
     
 }
 
-/* Formulize Button css */
-
+/****************
+Style the buttons
+*****************/ 
+/* Set colors and add images to the buttons */
 #formulize_form .formulize_button {
 	color: white;
 	height: 27px;
-	width: 163px;
+	width: 163px;*/
 	font-size: 12px;
 	border-color: #cccccc;
     text-shadow: 0 -1px 0 rgba(0,0,0,.4);    
@@ -130,13 +143,13 @@ For testing!
 	padding: 0 1.5em;
 	background: url(images/contact-new.png) no-repeat left center;
 	background-color: #2F85DC;
-	width: 190px !important;
+	width: 190px;
 }
 #formulize_form #formulize_addMultiButton {
 	padding: 0 1.5em;
 	background: url(images/multi.png) no-repeat left center;
 	background-color: #2F85DC;
-	width: 190px !important;
+	width: 190px;
 }
 #formulize_form #formulize_changeColsButton {
 	padding: 0 1.5em;
@@ -203,13 +216,7 @@ For testing!
 	background: url(images/notif.png) no-repeat left center;
 	background-color: #5450A5;
 }
-#formulize_form #printbutton {
-	vertical-align: top;
-	margin: -10px 0 0 0 !important;
-}
-
-/* Formulize Boutons by Francois T */
-
+/* Formulize buttons by Francois T */
 #formulize_form button, #formulizeform input[type='submit'], #formulizeform input[type='button'], #formulizeform input[type='reset'] {
 	background-color: #F4F9FE;
 	-webkit-border-radius: 5px;
@@ -225,6 +232,3 @@ For testing!
 	background-color: #f4f4f4;
 	border-color : #333;
 }
-
-
-

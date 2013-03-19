@@ -13,7 +13,7 @@ Table of Content
 5. Restricting the access to a Formulize form into Joomla..........page ?
 6. Customization of the appearance of a Formulize form.............page ?
 7. Notes on User Management........................................page ?
-8. Troubleshoothing................................................page ?
+8. Frequently Asked Questions......................................page ?
 
 ======================================================
 1. Description of the Formulize Integration Extension         (Would also be the short description to post on the JED -- Notes in red)
@@ -74,7 +74,7 @@ Before being able to embed a Formulize form into Joomla, the form itself needs t
 1. Go to the Menu Manager: Menu Items and create a new menu item.
 2. Select the new menu item type Formulize.
 3. Enter a title for the new webpage.
-4. In the required setting, select the desired form from the drop down list of all Formulize forms that are accessible to the current administrator. 
+4. In the required setting, select the desired form from the drop down list of the Formulize forms that are accessible to the current administrator. 
 
 ==========================================================
 5. Restricting the access to a Formulize Form into Joomla  
@@ -90,50 +90,64 @@ The second option is to let Formulize handle all the restrictions. If this optio
 6. Customization of the appearance of a Formulize form
 =======================================================
 
-It is possible for the webmaster to customize the appearance of a Formulize form by modifying its basic colors through an extremely simple interface. For each Formulize menu item, a parameter can be adjusted in the advanced setting section. This parameter consist of one single color field where three (and exactly three) colors in hex format can be entered, separated by commas. If that field contains valid values, the component bases the appearance of the form on those three colors. If nothing or an invalid value has been entered, this parameter is ignored. 
+It is possible for the webmaster to customize the appearance of a Formulize form by modifying its basic colors through an extremely simple interface. For each Formulize menu item, a parameter can be adjusted in the advanced setting section. This parameter consist of one single color field where two (and exactly two) colors in hex format can be entered, separated by commas. If that field contains valid values, the component bases the appearance of the form on those two colors. If nothing or an invalid value has been entered, this parameter is ignored. 
 
 (Will appear only if I have time to add the menu item parameter... It would be awesome... Notes in red)
 
 Another possibility would be for an experienced webmaster to modify directly the component css located in your_path/components/com_formulize/formulize.css.
 
+Note that if you want to add module beside the form, you will need to adjust to width manually.... form is ok, just button...
+
+if something beak just fix it in stylesheet
+
 ============================================
 7. Notes on User Management Synchronization
 ============================================
 
-*****************Still need to work on that big time!*********************
+Different aspect need to be understand carefully in order to use the system adequatly.  
 
-Users and Groups created in Joomla will be automatically created in Formulize. the reciprocal is not true...
+When considering the user management synchronization together with the associated permissions, we need to understand how this is actually working. While there is a direct correspondance between the users and the user groups in both systems, it is important to understand that there is no direct correspondence between the permissions granted to each group. The special meaning should be set manually in both system by the webmaster... need to rephrase that... 
 
-user with same user name... If you want to have perfect correspondence, you might want to add info manually. Note that this probably not necessary.
+Note that some specific permission are define in each system and a perfect mapping is not possible since the prmission has different meaning in each system. Only the names correspond.  
 
 User password not needed. user created through Joomla will have access to Formulize only through Joomla.
 
-***Important: Will have two webmasters, one for each system with different credential but both belongs to the same group?
+Questions that needs answers and comments will need to be added accordingly:
 
-Set user to active manually?
+1. Two webmasters, one for each system, with different credential (both belonging to the same group) or will be the exact same super user???
 
-Group with same names + Group inheritance....
+2. Set user to active manually?
 
-Note that some specific permission are define in each system and a perfect mapping is not possible since the prmission has different meaning in each system. The names  
+3. Basic groups will have same name and a direct correspondence? would be very nice...
 
-batch processing....
+As mentionned before, users and user groups created in Joomla will be automatically created in Formulize. Note that the reciprocal is not true. This suggest that the best way to perform user management would be from within Joomla and only from Joomla. Furthermore, no modification of any user nor user groups that was created through the Joomla should be performed from the Formulize system. If that basic rule is not respected, unpredictable results may occur.
 
-Change parent of a group
+If, for some reason, the webmaster wish to conduct activities in Formulize that are totally unrelated to Joomla, it is still possible. For ease of use in that situation, this should be clear very clear to the webmaster which users and user groups belong exclusively to Formulize and which users and user groups are shared between the two systems. 
 
-If that option is selected, the two systems should be in perfect synchronization.  If, for any weird circomstances, there are discreptancies between both system, can't create group and user directly in Formulize. The easiest way would be to On the other hand, you can adjust the membership manually if necessary....
+Synchronization limitation:
 
-2 webmasters, one for each system.
+Group inheritance is respected but need to watch when change parents....
 
-Note that if you want to allow an other user with no all power only the form he has access to...mini-admin
+Batch processing not supported....
 
-===========================
-8. Troubleshoothing / FAQ
-===========================
+==============================
+8. Frequently Asked Questions
+==============================
 
-1. Everything works but no user management action are replicated in Formulize. 
+Q: Everything works but no user management action are replicated in Formulize. 
 
-You probably need to enable the Plug-in.
+A: You probably need to enable the Plug-in.
 
-2. 
+Q: The user memberships are not corresponding anymore between the two systems
+
+A: If you use batch processing or change the parent of group (that are not supported yet) it is possible to modified manually in Formulize to adjust to Joomla. This should not be done and useing batch and parent should be avoid.
+
+Q: Why I do not get all the formulize form in the backend of the menu item settings?
+
+A: If you do not have permission to view the form, you do not have permission to embed it in a Joomla webpage.
+
+Q: I can't see the entire form when a module is displayed.
+
+A: Need to modify the css for that... no form is ok just button...
 
 (There will probably be more to add to this section when testing will be performed by others... Notes in red)
