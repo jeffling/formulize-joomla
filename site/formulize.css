@@ -13,17 +13,17 @@ Style the upper part of both forms
 ***********************************/
 
 /* Set the fonts and make sure the background stays white */
-#formulize_form #listofentries #fillInTable h1{
+#formulize_form #listofentries #titleTable h1{
 	color: black;
 	font-weight: bold;
 	font-size: 1.8em;
 	border: none;
 } 
-#formulize_form #listofentries #fillInTable {
+#formulize_form #listofentries #titleTable {
 	background-color: white;
 	border-color: white;
 }
-#formulize_form #listofentries #actionsTable, #formulize_form #listofentries #temp1, #formulize_form #listofentries #temp2, #formulize_form #listofentries #currentViewSelectTable {
+#formulize_form #listofentries #buttonsTable, #formulize_form #listofentries #outerAddEntryPanel, #formulize_form #listofentries #innerAddEntryPanel, #formulize_form #listofentries #currentViewSelectTable {
 	color: black;
 	font-weight: bold;
 	font-size: 1.1em;
