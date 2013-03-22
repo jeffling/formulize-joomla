@@ -15,5 +15,5 @@
 	$params = JComponentHelper::getParams( 'com_formulize' );
 	print "Path to Formulize: ".$params->get('formulize_path');
 
-	print "<a href='".$params->get('formulize_path')."modules/formulize/admin/ui.php'>Initial Sync - Only run after installing formulize and joomla and configuring formulize_path</a>";
+	print "<br /><br /><a href='".$params->get('formulize_path')."modules/formulize/admin/ui.php'>Initial Sync - Only run after installing formulize and joomla and configuring formulize_path</a>";
 	
