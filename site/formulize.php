@@ -1,4 +1,5 @@
 <?php
+
 // No direct access to this file
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
@@ -94,80 +95,44 @@ if ( $_GET["sync"] == "true" ) {
 	// return;
 }
 
-// Get the selected formId
-// Get the menuitemid number
-$input = JFactory::getApplication()->input;
-$menuitemid = $input->getInt( 'Itemid' );
-
-if ( $menuitemid ) {
-	// Get a reference to the database
-	$db = JFactory::getDbo();
-	// Query the database for the link's url
-	$query = $db->getQuery( true );
-	$query->select( 'link' )
-	->from( '#__menu ' )
-	->where( 'id = ' .  "'". $menuitemid . "'" );
-	$db->setQuery( $query );
-	if ( !$db->query() ) {
-		$this->setError( $this->_db->getErrorMsg() );
-		return -1;
-	}
-	// Get the result
-	$rows = $db->loadObjectList();
-	$link = $rows[0]->link;
-	// Get the very last number (the selected formId)
-	$parts = explode( '=', $link );
-	$formId = end( $parts );
-}
-
-// Add a style sheet for Formulize screens general styling
-$document = JFactory::getDocument();
-$document->addStyleSheet( JURI::base() . 'components/com_formulize/formulize.css' );
-
-// Inject the selected form into the screen
-include_once $formulize_path."/mainfile.php";
-Formulize::renderScreen( $formId );
-
-/*****************************************************
-	 * Note that what follows might be used to customize
-	 * the screen appearance by the webmaster
-
-	 * Create a lighter shade of a hex color
-	function hexLighter($hex,$factor = 30)
-    {
-    $new_hex = '';
-
-    $base['R'] = hexdec($hex{0}.$hex{1});
-    $base['G'] = hexdec($hex{2}.$hex{3});
-    $base['B'] = hexdec($hex{4}.$hex{5});
-
-    foreach ($base as $k => $v)
-        {
-        $amount = 255 - $v;
-        $amount = $amount / 100;
-        $amount = round($amount * $factor);
-        $new_decimal = $v + $amount;
-
-        $new_hex_component = dechex($new_decimal);
-        if(strlen($new_hex_component) < 2)
-            { $new_hex_component = "0".$new_hex_component; }
-        $new_hex .= $new_hex_component;
-        }
-
-    return $new_hex;
+	// Get the selected formId
+	// Get the menuitemid number
+	$input = JFactory::getApplication()->input;
+    $menuitemid = $input->getInt( 'Itemid' );  
+	
+    if ($menuitemid) {
+		// Querying the db necessary in order to have any change reflected "fast enough"
+        // Get a reference to the database
+		$db = JFactory::getDbo();
+		// Query the database for the link's url
+        $query = $db->getQuery(true);      
+        $query->select('link')
+			->from('#__menu ')
+			->where('id = ' .  "'". $menuitemid . "'" );            
+        $db->setQuery($query);    
+        if (!$db->query()) {
+			$this->setError($this->_db->getErrorMsg());
+			return -1;
+        }  
+		// Get the result 
+		$rows = $db->loadObjectList();  
+		$link = $rows[0]->link;
+		// Get the very last number (the selected formId)
+		$parts = explode('=', $link);
+		$formId = end($parts);
     }
 
-	* Remove all style from the component if needed
-	$document->_styleSheets= array();
-
-	* Add a style with the colors determined using a new menu item param
-	$style1 = '#formulizeform {
-    background-color: yellow;
-	}';
-	$style2 = '#formulizeform {
-    background-color: brown;
-	}';
-	// Will overwrite formulize.css
-	$document->addStyleDeclaration($style1);
-	$document->addStyleDeclaration($style2);
-	*/
+	// Add a style sheet for Formulize screens general styling
+	$document = JFactory::getDocument();
+	$document->addStyleSheet( JURI::base() . 'components/com_formulize/formulize.css' );
+	
+	// If no user is currently logged in
+	// set $GLOBALS so Formulize know no user is currently logged in
+	$user =& JFactory::getUser();
+	if ($user->guest) {
+		$GLOBALS['formulizeHostSystemUserId'] = 0;
+	}
+	
+	// Inject the selected form into the screen
+	include_once $formulize_path."/mainfile.php";
+	Formulize::renderScreen( $formId );
