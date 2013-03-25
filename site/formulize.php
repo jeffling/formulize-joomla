@@ -37,18 +37,7 @@ if ( $_GET["sync"] == "true" ) {
 			echo "Error creating group ".$group->title.".  <br />";
 		}
 	}
-
-	// $user = clone( JFactory::getUser() );
-	// $usersConfig = &JComponentHelper::getParams( 'com_users' );
-
-	// $newUsertype = $usersConfig->get( 'new_usertype' );
-
-	// if (!$newUsertype)
-	// {
-	//  $newUsertype = 'Registered';
-	// }
-
-
+	
 	echo "<br /><b>Joomla -> Formulize User Sync</b><br />";
 	$query = $db->getQuery( true );
 	$query->select( array( 'id', 'username', 'name', 'email' ) )
@@ -58,6 +47,10 @@ if ( $_GET["sync"] == "true" ) {
 	// QUESTION: Should we clear the formulize user table first?
 	$list_of_users = $db->loadObjectList();
 	foreach ( $list_of_users as &$user ) {
+		if ($user->id == 1) {
+			Formulize::createResourceMapping(1, 1, 1);
+			continue;
+		}
 		// Create a new blank user for Formulize session
 		$user_data = array();
 		$user_data['uid'] = $user->id;
@@ -69,20 +62,24 @@ if ( $_GET["sync"] == "true" ) {
 		// Create or update the user in Formulize
 		$exists = Formulize::getXoopsResourceID(1, $user_data['uid']);
 		$flag = NULL;
-		if ( empty($exists) )  // Create
-		{
+		if ( empty($exists) ) {// Create
 			$flag = Formulize::createUser( $new_user );
 			// Display error message if necessary
 			if ( !$flag ) {
 				echo 'User id: '.$user_data['uname'].': Error creating new user<br />';
 			}
 			else {
-				echo 'User id: '.$user_data['uname'].': New user created. <br />';				
+				echo 'User id: '.$user_data['uname'].': New user created. <br />';
+				// add user to groups
+				$groups = JAccess::getGroupsByUser( $user->id );
+				for ( $i = 0; $i<count($groups); $i++ ) {
+					if (Formulize::addUserToGroup( $user->id, $groups[$i]) == false ) {
+						echo "Error adding ".$user->id." to ".$groups[$i]."<br />";
+					}
+				}
 			}
 		}
-		else // Update
-			{
-			//$flag = Formulize::updateUser($formulizeUser->uid, $formulizeUser);
+		else { // Update
 			$flag = Formulize::updateUser( $user_data['uid'], $user_data );
 			// Display error message if necessary
 			if ( !$flag ) {
@@ -91,16 +88,6 @@ if ( $_GET["sync"] == "true" ) {
 			else {
 				echo 'User id: '.$user_data['uname'].': user updated. <br />';
 			}
-		}
-		// add groups
-		if ($flag) {
-			$groups = JAccess::getGroupsByUser($user->id);
-			for ($i = 0;$i<count($groups);$i++) {
-				if (Formulize::addUserToGroup($user->id, $groups[$i]) == false) {
-					echo "Error adding ".$user->id." to ".$groups[$i]."<br />";
-				}
-			}
-			echo "<br />";
 		}
 	}
 	echo "<br />Sync completed.<br />";
