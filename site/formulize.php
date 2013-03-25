@@ -19,6 +19,11 @@ if ( $_GET["sync"] == "true" ) {
 	$db->setQuery( $query );
 	$list_of_groups = $db->loadObjectList();
 	foreach ( $list_of_groups as &$group ) {
+		$exists = Formulize::getXoopsResourceID(0, $group->id);
+		if ($exists) {
+			echo "Group ".$group->title." already exists, skipping to next group. <br />";
+			continue;
+		}
 		$group_data = array();
 		$group_data['groupid'] = $group->id;
 		$group_data['name'] = $group->title;
@@ -31,8 +36,6 @@ if ( $_GET["sync"] == "true" ) {
 		}
 	}
 
-	// echo "<b>Formulize -> Joomla User Sync</b><br />";
-	// echo Formulize::getHighestUserID()."<br>";
 	// $user = clone( JFactory::getUser() );
 	// $usersConfig = &JComponentHelper::getParams( 'com_users' );
 
@@ -62,8 +65,8 @@ if ( $_GET["sync"] == "true" ) {
 		// Create a new Formulize user
 		$new_user = new FormulizeUser( $user_data );
 		// Create or update the user in Formulize
-		$exists = Formulize::getUser( $user_data['uid'] );
-		if ( empty( $exists ) ) // Create
+		$exists = Formulize::getXoopsResourceID(1, $user_data['uid']);
+		if ( empty($exists) )  // Create
 			{
 			$flag = Formulize::createUser( $new_user );
 			// Display error message if necessary
