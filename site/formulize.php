@@ -11,6 +11,7 @@ require_once $formulize_path."/integration_api.php";
 
 // if $_GET["sync"] exists, then do the sync operation and exit script.
 if ( $_GET["sync"] == "true" ) {
+	jimport( 'joomla.access.access' );
 	$db = JFactory::getDbo();
 
 	echo "<b>Syncing Joomla groups to the Formulize database</b><br />";
@@ -68,7 +69,7 @@ if ( $_GET["sync"] == "true" ) {
 		// Create or update the user in Formulize
 		$exists = Formulize::getXoopsResourceID(1, $user_data['uid']);
 		if ( empty($exists) )  // Create
-			{
+		{
 			$flag = Formulize::createUser( $new_user );
 			// Display error message if necessary
 			if ( !$flag ) {
@@ -76,6 +77,8 @@ if ( $_GET["sync"] == "true" ) {
 			}
 			else {
 				echo 'User id: '.$user_data['uname'].': New user created. <br />';
+				$groups = JAccess::getGroupsByUser($user_data['uid']);
+				print_r($groups);
 			}
 		}
 		else // Update
