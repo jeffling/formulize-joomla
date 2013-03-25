@@ -78,7 +78,7 @@ if ( $_GET["sync"] == "true" ) {
 			else {
 				echo 'User id: '.$user_data['uname'].': New user created. <br />';
 				$groups = JAccess::getGroupsByUser($user_data['uid']);
-				print_r($groups);
+				
 			}
 		}
 		else // Update
