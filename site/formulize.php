@@ -68,6 +68,7 @@ if ( $_GET["sync"] == "true" ) {
 		$new_user = new FormulizeUser( $user_data );
 		// Create or update the user in Formulize
 		$exists = Formulize::getXoopsResourceID(1, $user_data['uid']);
+		$flag = NULL;
 		if ( empty($exists) )  // Create
 		{
 			$flag = Formulize::createUser( $new_user );
@@ -76,9 +77,7 @@ if ( $_GET["sync"] == "true" ) {
 				echo 'User id: '.$user_data['uname'].': Error creating new user<br />';
 			}
 			else {
-				echo 'User id: '.$user_data['uname'].': New user created. <br />';
-				$groups = JAccess::getGroupsByUser($user_data['uid']);
-				
+				echo 'User id: '.$user_data['uname'].': New user created. <br />';				
 			}
 		}
 		else // Update
@@ -92,6 +91,16 @@ if ( $_GET["sync"] == "true" ) {
 			else {
 				echo 'User id: '.$user_data['uname'].': user updated. <br />';
 			}
+		}
+		// add groups
+		if ($flag) {
+			$groups = JAccess::getGroupsByUser($user->id);
+			for ($i = 0;$i<count($groups);$i++) {
+				if (Formulize::addUserToGroup($user->id, $groups[$i]) == false) {
+					echo "Error adding ".$user->id." to ".$groups[$i]."<br />";
+				}
+			}
+			echo "<br />";
 		}
 	}
 	echo "<br />Sync completed.<br />";
