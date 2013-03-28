@@ -10,47 +10,59 @@ $formulize_path = $params->get( 'formulize_path' );
 require_once $formulize_path."/integration_api.php";
 
 // if $_GET["sync"] exists, then do the sync operation and exit script.
-if ( $_GET["sync"] == "true" ) {
+if ( isset($_GET["sync"]) ) {
 	jimport( 'joomla.access.access' );
 	$db = JFactory::getDbo();
+
+	// get minimum group id
+	$query = $db->getQuery( true );
+	$query->select( array( 'MIN(id)' ) )
+	->from( '#__usergroups' );
+	$db->setQuery( $query );
+	$result = $db->loadObjectList();
+	$min_group_id = $result[0]->{'MIN(id)'};
+	
+	// sync the initial 3 groups
+	Formulize::createResourceMapping(0, $min_group_id, 3); // anonymous/public users
+	Formulize::createResourceMapping(0, $min_group_id+1, 2); // registered users
+	Formulize::createResourceMapping(0, $min_group_id+7, 1); // webmaster/super users
 
 	echo "<b>Syncing Joomla groups to the Formulize database</b><br />";
 	$query = $db->getQuery( true );
 	$query->select( array( 'id', 'title' ) )
 	->from( '#__usergroups' );
+
 	$db->setQuery( $query );
 	$list_of_groups = $db->loadObjectList();
 	foreach ( $list_of_groups as &$group ) {
-		$exists = Formulize::getXoopsResourceID(0, $group->id);
-		if ($exists) {
-			echo "Group ".$group->title." already exists, skipping to next group. <br />";
-			continue;
-		}
 		$group_data = array();
 		$group_data['groupid'] = $group->id;
 		$group_data['name'] = $group->title;
 		$new_group = new FormulizeGroup( $group_data );
-		if ( Formulize::createGroup( $new_group ) ) {
-			echo "Group ".$group->title." created. <br />";
+
+		$exists = Formulize::getXoopsResourceID(0, $group->id);
+		if ($exists) {
+			Formulize::renameGroup($group_data['groupid'], $group_data['name']);
+			continue;
 		}
 		else {
-			echo "Error creating group ".$group->title.".  <br />";
+			if ( Formulize::createGroup( $new_group ) ) {
+				echo "Group ".$group->title." created. <br />";
+			}
+			else {
+				echo "Error creating group ".$group->title.".  <br />";
+			}
 		}
 	}
-	
+
 	echo "<br /><b>Joomla -> Formulize User Sync</b><br />";
 	$query = $db->getQuery( true );
 	$query->select( array( 'id', 'username', 'name', 'email' ) )
 	->from( '#__users' );
 	$db->setQuery( $query );
 
-	// QUESTION: Should we clear the formulize user table first?
 	$list_of_users = $db->loadObjectList();
 	foreach ( $list_of_users as &$user ) {
-		if ($user->id == 1) {
-			Formulize::createResourceMapping(1, 1, 1);
-			continue;
-		}
 		// Create a new blank user for Formulize session
 		$user_data = array();
 		$user_data['uid'] = $user->id;
