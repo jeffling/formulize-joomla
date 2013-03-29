@@ -13,14 +13,14 @@ $document->addStyleDeclaration('.icon-48-formulize {background-image: url(../med
 
 // Set the main body
 $params = JComponentHelper::getParams( 'com_formulize' );
-print "Path to Formulize: ".$params->get('formulize_path');
-// this path is wrong
-print "<br /><br /><a href='index.php?option=com_formulize&view=formulize&sync=true'>Initial Sync - Only run after installing formulize and joomla and configuring formulize_path</a>";
+echo "Path to Formulize: ".$params->get('formulize_path');
+echo "<br /><br /><a href='".$_SERVER['PHP_SELF']."?option=com_formulize&sync=true'>Initial Sync - Only run after installing formulize and joomla and configuring formulize_path</a>";
 
 
-	
+
 // if $_GET["sync"] exists, then do the sync operation and exit script.
 if ( isset($_GET["sync"]) ) {
+	require_once $params->get('formulize_path')."/integration_api.php";
 	jimport( 'joomla.access.access' );
 	$db = JFactory::getDbo();
 
@@ -122,4 +122,5 @@ if ( isset($_GET["sync"]) ) {
 		}
 	}
 	echo "<br />Sync completed.<br />";
+	echo "<br /><a href='".$_SERVER['PHP_SELF']."?option=com_formulize'>Back to plugin configuration</a>";
 }
