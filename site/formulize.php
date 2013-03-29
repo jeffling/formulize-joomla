@@ -23,9 +23,15 @@ if ( isset($_GET["sync"]) ) {
 	$min_group_id = $result[0]->{'MIN(id)'};
 	
 	// sync the initial 3 groups
-	Formulize::createResourceMapping(0, $min_group_id, 3); // anonymous/public users
-	Formulize::createResourceMapping(0, $min_group_id+1, 2); // registered users
-	Formulize::createResourceMapping(0, $min_group_id+7, 1); // webmaster/super users
+	if ( empty(Formulize::getXoopsResourceID($min_group_id)) ) {
+		Formulize::createResourceMapping(0, $min_group_id, 3); // anonymous/public users
+	}
+	if ( empty(Formulize::getXoopsResourceID($min_group_id+1)) ) {
+		Formulize::createResourceMapping(0, $min_group_id+1, 2); // anonymous/public users
+	}
+	if ( empty(Formulize::getXoopsResourceID($min_group_id+7)) ) {
+		Formulize::createResourceMapping(0, $min_group_id, 1); // anonymous/public users
+	}
 
 	echo "<b>Syncing Joomla groups to the Formulize database</b><br />";
 	$query = $db->getQuery( true );
