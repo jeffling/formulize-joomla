@@ -19,7 +19,8 @@ echo "<br /><form method='get' action='".$_SERVER['PHP_SELF']."'><input type='hi
 // if $_GET["sync"] exists, then do the sync operation and exit script.
 if ( isset($_GET["sync"]) ) {
 	$application = JFactory::getApplication();
-	$return_string = "<br />";
+	$messages = "<br />";
+	$errors = "<br />";
 	require_once $params->get('formulize_path')."/integration_api.php";
 	jimport( 'joomla.access.access' );
 	$db = JFactory::getDbo();
@@ -46,7 +47,6 @@ if ( isset($_GET["sync"]) ) {
 		Formulize::createResourceMapping(0, $min_group_id+7, 1); // webmaster/super user
 	}
 
-	$return_string = $return_string."<b>Syncing Joomla groups to the Formulize database:</b><br />";
 	$query = $db->getQuery( true );
 	$query->select( array( 'id', 'title' ) )
 	->from( '#__usergroups' );
@@ -66,15 +66,14 @@ if ( isset($_GET["sync"]) ) {
 		}
 		else {
 			if ( Formulize::createGroup( $new_group ) ) {
-				$return_string = $return_string."Group ".$group->title." created. <br />";
+				$messages = $messages."Group ".$group->title." created. <br />";
 			}
 			else {
-				$return_string = $return_string."Error creating group ".$group->title.".  <br />";
+				$errors = $errors."Error creating group ".$group->title.".  <br />";
 			}
 		}
 	}
 
-	$return_string = $return_string."<br /><b>Syncing Joomla users to the Formulize database:</b><br />";
 	$query = $db->getQuery( true );
 	$query->select( array( 'id', 'username', 'name', 'email' ) )
 	->from( '#__users' );
@@ -97,15 +96,15 @@ if ( isset($_GET["sync"]) ) {
 			$flag = Formulize::createUser( $new_user );
 			// Display error message if necessary
 			if ( !$flag ) {
-				$return_string = $return_string.'User id: '.$user_data['uname'].': Error creating new user<br />';
+				$errors = $errors.'User id: '.$user_data['uname'].': Error creating new user<br />';
 			}
 			else {
-				$return_string = $return_string.'User id: '.$user_data['uname'].': New user created. <br />';
+				$messages = $messages.'User id: '.$user_data['uname'].': New user created. <br />';
 				// add user to groups
 				$groups = JAccess::getGroupsByUser( $user->id );
 				for ( $i = 0; $i<count($groups); $i++ ) {
 					if (Formulize::addUserToGroup( $user->id, $groups[$i]) == false ) {
-						$return_string = $return_string."Error adding ".$user->id." to ".$groups[$i]."<br />";
+						$errors = $errors."Error adding ".$user->id." to ".$groups[$i]."<br />";
 					}
 				}
 			}
@@ -114,14 +113,18 @@ if ( isset($_GET["sync"]) ) {
 			$flag = Formulize::updateUser( $user_data['uid'], $user_data );
 			// Display error message if necessary
 			if ( !$flag ) {
-				$return_string = $return_string.'User id: '.$user_data['uid'].' Error updating new user<br />';
+				$errors = $errors.'User id: '.$user_data['uid'].' Error updating new user<br />';
 			}
 			else {
-				$return_string = $return_string.'User id: '.$user_data['uname'].': user updated. <br />';
+				$messages = $messages.'User id: '.$user_data['uname'].': user updated. <br />';
 			}
 		}
 	}
-	$return_string = $return_string."<br />Sync completed.<br />";
-	$application->enqueueMessage(JText::_($return_string));
-
+	if ($messages != "<br />") {
+		$application->enqueueMessage(JText::_($messages));
+	}
+	
+	if ($errors != "<br />") {
+		$application->enqueueMessage(JText::_($errors), 'error');
+	}
 }
