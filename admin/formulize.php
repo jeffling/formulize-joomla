@@ -14,12 +14,12 @@ $document->addStyleDeclaration('.icon-48-formulize {background-image: url(../med
 // Set the main body
 $params = JComponentHelper::getParams( 'com_formulize' );
 echo "Path to Formulize: ".$params->get('formulize_path');
-echo "<br /><br /><a href='".$_SERVER['PHP_SELF']."?option=com_formulize&sync=true'>Initial Sync - Only run after installing formulize and joomla and configuring formulize_path</a>";
-
-
+echo "<br /><form method='get' action='".$_SERVER['PHP_SELF']."'><input type='hidden' name='sync' value='true'><input type='hidden' name='option' value='com_formulize'><button type='submit'>Sync</button></form>";
 
 // if $_GET["sync"] exists, then do the sync operation and exit script.
 if ( isset($_GET["sync"]) ) {
+	$application = JFactory::getApplication();
+	$return_string = "<br />";
 	require_once $params->get('formulize_path')."/integration_api.php";
 	jimport( 'joomla.access.access' );
 	$db = JFactory::getDbo();
@@ -46,7 +46,7 @@ if ( isset($_GET["sync"]) ) {
 		Formulize::createResourceMapping(0, $min_group_id+7, 1); // webmaster/super user
 	}
 
-	echo "<b>Syncing Joomla groups to the Formulize database</b><br />";
+	$return_string = $return_string."<b>Syncing Joomla groups to the Formulize database:</b><br />";
 	$query = $db->getQuery( true );
 	$query->select( array( 'id', 'title' ) )
 	->from( '#__usergroups' );
@@ -66,15 +66,15 @@ if ( isset($_GET["sync"]) ) {
 		}
 		else {
 			if ( Formulize::createGroup( $new_group ) ) {
-				echo "Group ".$group->title." created. <br />";
+				$return_string = $return_string."Group ".$group->title." created. <br />";
 			}
 			else {
-				echo "Error creating group ".$group->title.".  <br />";
+				$return_string = $return_string."Error creating group ".$group->title.".  <br />";
 			}
 		}
 	}
 
-	echo "<br /><b>Joomla -> Formulize User Sync</b><br />";
+	$return_string = $return_string."<br /><b>Syncing Joomla users to the Formulize database:</b><br />";
 	$query = $db->getQuery( true );
 	$query->select( array( 'id', 'username', 'name', 'email' ) )
 	->from( '#__users' );
@@ -97,15 +97,15 @@ if ( isset($_GET["sync"]) ) {
 			$flag = Formulize::createUser( $new_user );
 			// Display error message if necessary
 			if ( !$flag ) {
-				echo 'User id: '.$user_data['uname'].': Error creating new user<br />';
+				$return_string = $return_string.'User id: '.$user_data['uname'].': Error creating new user<br />';
 			}
 			else {
-				echo 'User id: '.$user_data['uname'].': New user created. <br />';
+				$return_string = $return_string.'User id: '.$user_data['uname'].': New user created. <br />';
 				// add user to groups
 				$groups = JAccess::getGroupsByUser( $user->id );
 				for ( $i = 0; $i<count($groups); $i++ ) {
 					if (Formulize::addUserToGroup( $user->id, $groups[$i]) == false ) {
-						echo "Error adding ".$user->id." to ".$groups[$i]."<br />";
+						$return_string = $return_string."Error adding ".$user->id." to ".$groups[$i]."<br />";
 					}
 				}
 			}
@@ -114,13 +114,14 @@ if ( isset($_GET["sync"]) ) {
 			$flag = Formulize::updateUser( $user_data['uid'], $user_data );
 			// Display error message if necessary
 			if ( !$flag ) {
-				echo 'User id: '.$user_data['uid'].' Error updating new user<br />';
+				$return_string = $return_string.'User id: '.$user_data['uid'].' Error updating new user<br />';
 			}
 			else {
-				echo 'User id: '.$user_data['uname'].': user updated. <br />';
+				$return_string = $return_string.'User id: '.$user_data['uname'].': user updated. <br />';
 			}
 		}
 	}
-	echo "<br />Sync completed.<br />";
-	echo "<br /><a href='".$_SERVER['PHP_SELF']."?option=com_formulize'>Back to plugin configuration</a>";
+	$return_string = $return_string."<br />Sync completed.<br />";
+	$application->enqueueMessage(JText::_($return_string));
+
 }
