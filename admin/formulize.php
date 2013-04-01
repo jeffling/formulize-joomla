@@ -39,11 +39,11 @@ if ( isset($_GET["sync"]) ) {
 	}
 	$exists = Formulize::getXoopsResourceID(0, $min_group_id+1);
 	if ( empty( $exists ) ) {
-		Formulize::createResourceMapping(0, $min_group_id+1, 2); // anonymous/public users
+		Formulize::createResourceMapping(0, $min_group_id+1, 2); // registered users
 	}
 	$exists = Formulize::getXoopsResourceID(0, $min_group_id+7);
 	if ( empty( $exists ) ) {
-		Formulize::createResourceMapping(0, $min_group_id+7, 1); // anonymous/public users
+		Formulize::createResourceMapping(0, $min_group_id+7, 1); // webmaster/super user
 	}
 
 	echo "<b>Syncing Joomla groups to the Formulize database</b><br />";
